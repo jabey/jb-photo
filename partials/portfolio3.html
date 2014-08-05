@@ -1,0 +1,23 @@
+  
+
+  <div id = "portStack" class="row stack" ng-show="portfolioLoaded==true">
+    <div class="col-xs-1" ng-repeat="photoIdx in leftColumnContent">
+<!--        <div ng-repeat="photoIdx in leftColumnContent">-->
+<!--          <div class="thumbnail" id='{{"portfolioPhoto" + photoIdx}}'>-->
+            <a href="" ng-click="stackToggle()">
+              <img class="img-responsive" ng-src="{{portfolio.feed.entry[photoIdx].media$group.media$content[0].url}}" alt="{{portfolio.feed.entry[photoIdx].media$group.media$description.$t}}" >
+            </a>
+<!--          </div>-->
+<!--        </div>-->
+    </div>
+  </div>
+    
+    
+
+  <div class="row" ng-show="portfolioLoaded==false">
+    <div class="progress progress-striped active progress-position" >
+      <span class="badge">{{portfolioProgress}}</span>
+      <div class="bar" ng-style="{width: portfolioProgress}">Loading...</div>
+    </div>
+  </div>
+

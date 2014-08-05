@@ -1,0 +1,208 @@
+    <!--
+      <div class="row">
+        <div class="span12">
+          <p>Social Buttons. Keywords. Info Button</p>
+        </div>
+      </div>
+      -->
+    <div class="row">
+      <div ng-show="photoLoaded==true">
+        <div id="mainImageOuter" class="col-md-9">
+<!--          <img id="mainImage" ng-src="{{gallery.feed.entry[photoIdx].content.src}}" class="img-responsive">-->
+          <img id="mainImage" ng-src="{{mainImage.src}}" class="img-responsive">
+        </div>
+      </div>
+      <div ng-show="photoLoaded==false">
+        <div id="imageHolder" class="col-md-9">
+          <span class="fa fa-spinner fa-spin fa-4x spinner-position"></span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel-group" id="detailAccordion">
+          <div class="panel panel-default data-jbp-toggle">
+            <div class="panel-heading accent-dark">
+              <h4 class="panel-title">
+                <a class="jbToggle" data-toggle="collapse" data-target="#collapseInfo">
+                  <span class="fa fa-info-circle fa-lg"></span> More Information<span class="pull-right fa fa-caret-down"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseInfo" class="panel-collapse collapse">
+              <div class="panel-body accent-light">
+                {{photoData.feed.media$group.media$description.$t}}
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default data-jbp-toggle">
+            <div class="panel-heading accent-dark">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-target="#collapseLink">
+                  <span class="fa fa-link fa-lg"></span> Permalink<span class="pull-right fa fa-caret-down"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseLink" class="panel-collapse collapse">
+              <div class="panel-body accent-light">
+                <a ng-href="http://jonathanball.photography/id/{{jbId}}">jonathanball.photography/id/{{jbId}}</a>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default data-jbp-toggle">
+            <div class="panel-heading accent-dark">
+              <h4 class="panel-title">
+                <a class="jbToggle" data-toggle="collapse" data-target="#collapseShare">
+                  <span class="fa fa-share fa-lg"></span> Share This!<span class="pull-right fa fa-caret-down"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseShare" class="panel-collapse collapse">
+              <div> <!--class="panel-body accent-light">-->
+                <ul class="list-group">
+                  <li class="list-group-item accent-light">
+                    <div class="media">
+                      <div class="pull-left">
+                        <a ng-href="mailto:?body=Take a look at this photo. http://jonathanball.photography/id/{{jbId}}" alt="Email Link" target="_blank"><span class="fa fa-envelope fa-2x"></span></a>
+                      </div>
+                      <div class="media-body pull-right">Share via email</div>
+                    </div>
+                  </li>
+                  <li class="list-group-item accent-light">
+                    <data-jbp-share-button data-jbp-button-type="tumblrButton" data-jbp-share-url="{{tumblrButton.url}}"></data-jbp-share-button>
+                  </li>
+                  <li class="list-group-item accent-light">
+                    <data-jbp-share-button data-jbp-button-type="pinitButton" data-jbp-share-url="{{pinterestButton.url}}"></data-jbp-share-button>
+                  </li>
+                  <li class="list-group-item accent-light">
+                    <data-jbp-share-button data-jbp-button-type="twitterButton" data-jbp-share-url="{{twitterButton.url}}"></data-jbp-share-button>
+                  </li>
+                  <li class="list-group-item accent-light">
+                    <data-jbp-share-button data-jbp-button-type="gPlusButton" data-jbp-share-url="{{gPlusButton.url}}"></data-jbp-share-button>
+                  </li>
+                  <li class="list-group-item accent-light">
+                    <data-jbp-share-button data-jbp-button-type="facebookButton" data-jbp-share-url="{{facebookButton.url}}"></data-jbp-share-button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default data-jbp-toggle" ng-show="printAvailable">
+            <div class="panel-heading accent-dark">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-target="#collapsePrint">
+                  <span class="fa fa-shopping-cart fa-lg"></span> Buy Print<span class="pull-right fa fa-caret-down"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapsePrint" class="panel-collapse collapse">
+              <div class="panel-body accent-light">
+                <div class="media">
+                  <div class="pull-left">
+                    <span class="fa fa-circle fa-4x" style="color:red"></span>
+                  </div>
+                  <div class="media-body">
+                    <h4>Available as a print from RedBubble.com</h4>
+                    <p><a ng-href="{{printURL}}" target="_blank">Click here for more details</a> <span class="glyphicon glyphicon-new-window"></span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default data-jbp-toggle" ng-show="activeMenuItem=='link'">
+            <div class="panel-heading accent-dark">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-target="#collapseSimilar">
+                  <span class="fa fa-picture-o fa-lg"></span> See more like this<span class="pull-right fa fa-caret-down fa-rotate-180"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseSimilar" class="panel-collapse collapse in">
+              <div class="panel-body accent-light">
+                <div class="media">
+                  <div class="pull-left">
+                    <img class="media-object jbp-linked-thumb" ng-src="{{linkedThumbUrl}}" alt="Linked gallery thumbnail">
+                  </div>
+                  <div class="media-body pull-right h5">
+                    <a ng-href="/gallery/{{linkedGalleryId}}">View {{linkedGalleryDesc}} gallery</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-show="photoLoaded==true">
+      <div class="col-md-12">
+        <ul class="pager">
+          <li class="previous"><a ng-hide="prevUrl == null" ng-href="{{prevUrl}}" class="accent-dark"><span class="fa fa-chevron-left fa-lg" ></span></a></li>
+          <li class="next"><a ng-hide="nextUrl == null" ng-href="{{nextUrl}}" class="accent-dark"><span class="fa fa-chevron-right fa-lg" ></span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+<!--
+      <div class="col-md-12">
+        <hr class="featurette-divider">
+      </div>
+-->
+      <div class="col-md-8">
+      </div>
+      <div class="col-md-4">
+        <div class="text-right">
+          <button ng-show="licenseAvailable" class="btn btn-primary" type="button" data-toggle="modal" data-target="#licenseModal"><span class="fa fa-download"></span> License</button>
+          <button ng-show="printAvailable" class="btn btn-success" type="button" data-toggle="modal" data-target="#printModal"><span class="fa fa-shopping-cart"></span> Buy print</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+  <div id="licenseModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="licenseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="licenseModalLabel">License This Image</h3>
+        </div>
+        <div class="modal-body">
+          <div class="media">
+            <div class="pull-left">
+              <img class="media-object" src="http://www.alamy.com/images/Logos/alamy-LM-25.gif">
+            </div>
+            <div class="media-body">
+              <h4>Available to license from Alamy.com</h4>
+              <p><a ng-href="{{licenseURL}}" target="_blank">Click here for more details</a></p>
+            </div>
+          </div>
+          <small><p>[NB: Links open in a new window]</p></small>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+
+
+  <div id="printModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="printModalLabel">Purchase a Print</h3>
+        </div>
+        <div class="modal-body">
+          <div class="media">
+            <div class="pull-left">
+              <span class="fa fa-circle fa-4x" style="color:red"></span>
+            </div>
+            <div class="media-body">
+              <h4>Available as a print from RedBubble.com</h4>
+              <p><a ng-href="{{printURL}}" target="_blank">Click here for more details</a></p>
+            </div>
+          </div>
+          <small><p>[NB: Links open in a new window]</p></small>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

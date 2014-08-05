@@ -1,0 +1,59 @@
+  
+
+        <div class="row" ng-show="portfolioLoaded==true">
+          <div class="col-md-4">
+              <div ng-repeat="photoIdx in leftColumnContent">
+                <div class="thumbnail" id='{{"portfolioPhoto" + photoIdx}}'>
+                  <a href="" ng-click="setLargePortUrl(photoIdx)">
+                    <img class="portfolio-image" ng-src="{{portfolio.feed.entry[photoIdx].media$group.media$thumbnail[0].url}}" alt="{{portfolio.feed.entry[photoIdx].media$group.media$description.$t}}" >
+                    </a>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <p>{{portfolio.feed.subtitle.$t}}</p>
+            </div>
+              <div ng-repeat="photoIdx in middleColumnContent">
+                <div class="thumbnail">
+                  <a href="" ng-click="setLargePortUrl(photoIdx)">
+                    <img class="portfolio-image" ng-src="{{portfolio.feed.entry[photoIdx].media$group.media$thumbnail[0].url}}" alt="{{portfolio.feed.entry[photoIdx].media$group.media$description.$t}}" >
+                  </a>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div ng-repeat="photoIdx in rightColumnContent">
+                <div class="thumbnail">
+                  <a href="" ng-click="setLargePortUrl(photoIdx)">
+                    <img class="portfolio-image" ng-src="{{portfolio.feed.entry[photoIdx].media$group.media$thumbnail[0].url}}" alt="{{portfolio.feed.entry[photoIdx].media$group.media$description.$t}}" >
+                  </a>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row" ng-show="portfolioLoaded==false">
+          <div class="progress progress-striped active progress-position" >
+            <span class="badge">{{portfolioProgress}}</span>
+            <div class="bar" ng-style="{width: portfolioProgress}">Loading...</div>
+          </div>
+        </div>
+
+  
+  
+  <div id="portModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="portModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+<!--        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>-->
+        <div class="modal-body portfolio-popup text-center">      
+          <ul class="pager">
+            <li class="previous"><a ng-show="currentPhotoIdx > 0" type="button" ng-click="prevPort()" class="accent-dark">&larr;</a></li>
+            <li class="next"><a ng-show="currentPhotoIdx < portfolioLength-1" type="button" ng-click="nextPort()" class="accent-dark">&rarr;</a></li>
+          </ul>
+          <img class="img-responsive" ng-src="{{largePortUrl}}" alt="" >
+        </div>
+      </div>
+    </div>
+  </div>

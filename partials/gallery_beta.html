@@ -1,0 +1,121 @@
+<!--
+    <div class="row">
+      <div class="col-md-3">
+        <div class="well">
+          <h3>{{galleryDesc}}</h3>
+          <p>{{gallery.feed.gphoto$numphotos.$t}} images</p>
+      </div>
+      </div>
+      <div class="col-md-9">
+        <p>{{gallery.feed.subtitle.$t}}</p>
+      </div>
+    </div>
+-->
+<!--
+    <div class="row">
+      <div class="col-md-12">
+        <hr class="featurette-divider">
+      </div>
+    </div>
+-->
+    <div class="row">
+      <div class="col-md-9">
+        <div class="col-md-4" ng-show="galleryLoaded==true">
+          <div class="thumbnail jbp-gallery-title-container">
+            <img src="img/jb-logo-bg320.png" class="accent-light">
+            <div class="jbp-gallery-title text-center">
+              <h2>{{galleryDesc}}</h2>
+              <p>{{gallery.feed.gphoto$numphotos.$t}} images</p>
+              <div ng-show="showGalleryQuote">
+                <span class="fa fa-quote-left"></span>
+                <span class="h3">...{{galleryQuote}}...</span>
+                <span class="fa fa-quote-right"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+<!--        <ul class="thumbnails" ng-show="galleryLoaded==true">-->
+<!--          <li ng-repeat="pic in gallery.feed.entry" class="col-md-3">-->
+          <div ng-repeat="pic in gallery.feed.entry" class="col-md-4" ng-show="galleryLoaded==true">
+            <a ng-href="/gallery/{{galleryIdx}}/photo/{{$index+1}}" class="thumbnail">
+              <img ng-src="{{pic.media$group.media$thumbnail[0].url}}" alt="{{pic.media$group.media$description.$t}}" >
+            </a>
+          </div>
+<!--          </li>-->
+<!--        </ul>-->
+        <div class="progress progress-striped active progress-position" ng-show="galleryLoaded==false">
+          <span class="badge">{{galleryProgress}}</span>
+          <div class="progress-bar" role="progressbar" ng-style="{width: galleryProgress}">Loading...</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel-group" id="detailAccordion">
+          <div class="panel panel-default data-jbp-toggle">
+            <div class="panel-heading accent-dark">
+              <h4 class="panel-title">
+                <a class="jbToggle" data-toggle="collapse" data-target="#collapseInfo">
+                  <span class="fa fa-info-circle fa-lg"></span> More Information<span class="pull-right fa fa-caret-down"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseInfo" class="panel-collapse collapse in">
+              <div class="panel-body accent-light">
+                {{gallery.feed.subtitle.$t}}
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default data-jbp-toggle">
+            <div class="panel-heading accent-dark">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-target="#collapseLink">
+                  <span class="fa fa-link fa-lg"></span> Permalink<span class="pull-right fa fa-caret-down"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseLink" class="panel-collapse collapse">
+              <div class="panel-body accent-light">
+                <a ng-href="{{canonicalUrl}}">{{canonicalUrl}}</a>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default data-jbp-toggle">
+            <div class="panel-heading accent-dark">
+              <h4 class="panel-title">
+                <a class="jbToggle" data-toggle="collapse" data-target="#collapseShare">
+                  <span class="fa fa-share fa-lg"></span> Share This!<span class="pull-right fa fa-caret-down"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseShare" class="panel-collapse collapse">
+              <div> <!--class="panel-body accent-light">-->
+                <ul class="list-group">
+                  <li class="list-group-item accent-light">
+                    <div class="media">
+                      <div class="pull-left">
+                        <a ng-href="mailto:?body=Take a look at this photo. http://jonathanball.photography/id/{{jbId}}" alt="Email Link" target="_blank"><span class="fa fa-envelope fa-2x"></span></a>
+                      </div>
+                      <div class="media-body pull-right">Share via email</div>
+                    </div>
+                  </li>
+                  <li class="list-group-item accent-light">
+                    <data-jbp-share-button data-jbp-button-type="tumblrButton" data-jbp-share-url="{{tumblrButton.url}}"></data-jbp-share-button>
+                  </li>
+                  <li class="list-group-item accent-light">
+                    <data-jbp-share-button data-jbp-button-type="pinitButton" data-jbp-share-url="{{pinterestButton.url}}"></data-jbp-share-button>
+                  </li>
+                  <li class="list-group-item accent-light">
+                    <data-jbp-share-button data-jbp-button-type="twitterButton" data-jbp-share-url="{{twitterButton.url}}"></data-jbp-share-button>
+                  </li>
+                  <li class="list-group-item accent-light">
+                    <data-jbp-share-button data-jbp-button-type="gPlusButton" data-jbp-share-url="{{gPlusButton.url}}"></data-jbp-share-button>
+                  </li>
+                  <li class="list-group-item accent-light">
+                    <data-jbp-share-button data-jbp-button-type="facebookButton" data-jbp-share-url="{{facebookButton.url}}"></data-jbp-share-button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

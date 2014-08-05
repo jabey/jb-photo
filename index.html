@@ -1,0 +1,167 @@
+<!doctype html>
+<html ng-app="photoSiteApp" itemscope itemtype="http://schema.org/Photograph">
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300|Roboto+Condensed|Fredericka+the+Great' rel='stylesheet' type='text/css'>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="fragment" content="!"> -->
+    <title ng-bind="subTitle + 'Jonathan Ball Photography'">Jonathan Ball Photography</title>
+    <link rel="canonical" ng-href="{{canonicalUrl}}" />
+    <link rel="shortcut icon" href="favicon-32.png" />
+    <link rel="apple-touch-icon-precomposed" href="favicon-152.png">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+<!--
+    <meta itemprop="name" content="Jonathan Ball Photography">
+    <meta itemprop="description" content="{{mdDesc}}">
+    <meta itemprop="image" content="{{mdImageUrl}}">
+-->
+<!--
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22811928-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-51556752-1', 'jonathanball.photography');
+
+    </script>
+  </head>
+  <body class="accent-light">
+
+    <div ng-controller="MainCtrl">
+      <div id="jbpMain">
+        <nav id="jbpNavbar" class="navbar navbar-default" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jbpInnerNav">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="fa fa-bars"></span>
+              </button>
+              <a class="navbar-brand" href="/">
+                Jonathan Ball Photography
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="jbpInnerNav">
+              <ul class="nav navbar-nav navbar-right"> <!--pull-right">-->
+                <li ng-class="{'active': activeMenuItem=='home'}">
+                  <a href="/"><span class="fa fa-home"></span> Home</a>
+                </li>
+                <li ng-class="{'active': activeMenuItem=='portfolio'}">
+                  <a href="/portfolio">Portfolio</a>
+                </li>
+                <li ng-class="{'active': activeMenuItem=='about'}">
+                  <a href="/about">About</a>
+                </li>
+                <li ng-class="{'active': activeMenuItem=='contact'}">
+                  <a href="/contact">Contact</a>
+                </li>
+                <li ng-class="{'dropdown': true, 'active': (activeMenuItem=='gallery' || activeMenuItem=='galleries')}">
+                  <a class="dropdown-toggle" data-toggle="dropdown">Galleries<b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu" >
+                    <li>
+                      <a href="/galleries">All Galleries</a>
+                    </li>
+                    <li ng-show="galleryListLoaded==false"><span class="fa fa-spinner fa-spin"></span> Loading...</li>
+                    <li ng-repeat="gLink in galleryLinkData" ng-show="galleryListLoaded==true">
+                      <a ng-href="/gallery/{{$index+1}}">{{gLink.desc}}</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div class="container-fluid">
+          <div ng-view></div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="">
+            <small>
+            <ul class="breadcrumb accent-dark" ng-show="activeMenuItem!='home'">
+              <li><a href="/">Home</a></li>
+              <li ng-show="activeMenuItem=='portfolio'" class="active">Portfolio</li>
+              <li ng-show="activeMenuItem=='about'" class="active">About</li>
+              <li ng-show="activeMenuItem=='contact'" class="active">Contact</li>
+              <li ng-show="activeMenuItem=='privacy'" class="active">Privacy</li>
+              <li ng-show="activeMenuItem=='galleries'" class="active">Galleries</li>
+              <li ng-show="activeMenuItem=='photo'||activeMenuItem=='gallery'" ng-class="{'active': activeMenuItem=='gallery'}"><a href="/galleries">Galleries</a></li>
+<!--
+              <li ng-show="activeMenuItem=='gallery'" ng-class="{'active': activeMenuItem=='gallery'}">{{galleryLinkData[galleryIdx-1].desc}}</li>
+              <li ng-show="activeMenuItem=='photo'" ng-class="{'active': activeMenuItem=='gallery'}"><a href="/gallery/{{galleryIdx}}">{{galleryLinkData[galleryIdx-1].desc}}</a></li>
+-->
+              <li ng-show="activeMenuItem=='gallery'" ng-class="{'active': activeMenuItem=='gallery'}">{{galleryDesc}}</li>
+              <li ng-show="activeMenuItem=='photo'" ng-class="{'active': activeMenuItem=='gallery'}"><a href="/gallery/{{galleryIdx}}">{{galleryLinkData[galleryIdx-1].desc}}</a></li>
+              <li ng-show="activeMenuItem=='photo'" ng-class="{'active': activeMenuItem=='photo'}">Image {{photoId}} of {{galleryLength}}</li>
+              <li ng-show="activeMenuItem=='link'" class="active">Link</li>
+              <li ng-show="activeMenuItem=='link'" class="active">{{permaId}}</li>
+            </ul>
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+<!--            <hr>-->
+            <footer>
+              <span>All content <strong>Copyright &copy; 2003-{{currentYear}} Jonathan M. Ball. All rights reserved.</strong> Please respect copyright and do not reproduce any images without permission.</span>
+              <br />
+              <br />
+              <span><small>This website is built with <a href="http://angularjs.org/">AngularJS</a> and <a href="http://twitter.github.io/bootstrap/">Bootstrap</a>. Uses <a href="http://fortawesome.github.io/Font-Awesome" alt="Font Awesome acknowlegement">Font Awesome</a></small></span>
+            </footer>
+          </div>
+        <div class="col-md-2" id="socialLinks">
+            <a href="mailto:info@jonathanball.co.uk" alt="Email Link" target="_blank"><span class="fa fa-envelope"></span></a>
+            <a href="http://twitter.com/jabey" alt="Twitter Profile" target="_blank"><span class="fa fa-twitter-square"></span></a>
+            <a href="http://plus.google.com/u/0/106834531134885596306" alt="Google Plus Profile" target="_blank"><span class="fa fa-google-plus-square"></span></a>
+            <a href="#" alt="Flickr Profile" target="_blank">
+                <span class="fa fa-flickr"></span>
+            </a>
+            <a href="#" alt="Pinterest Profile" target="_blank"><span class="fa fa-pinterest-square"></span></a>
+            <a href="#" alt="Tumblr" target="_blank"><span class="fa fa-tumblr-square"></span></a>
+            <a href="#" alt="Facebook" target="_blank"><span class="fa fa-facebook-square"></span></a>
+          </div>
+        </div>
+      </div>
+      <div id="cookieWarning" class="alert alert-warning alert-dismissable navbar-fixed-bottom" ng-show="acceptCookies!==true">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        This website uses cookies. You can find out more by reading our
+        <a href="/privacy" class="alert-link">privacy policy</a>. By continuing to browse we assume you are happy to receive cookies from this website.
+        <button ng-Click="enableCookies()" id="cookieContinue" type="button" class="btn btn-default">Continue</button>
+      </div>
+
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script id="facebook-jssdk" type="text/javascript" async src="//connect.facebook.net/en_US/sdk.js#xfbml=1&amp;appId=1428296944098387&amp;version=v2.0"></script>
+<!--    <script type="text/javascript" async src="//apis.google.com/js/plusone.js?onload=gPlusCallback"></script>-->
+    <script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js" data-pin-build="buildPinButton"></script>
+<!--    <script id="tumblr-js" type="text/javascript" async src="//platform.tumblr.com/v1/share.js"></script>-->
+    <script src="js/ps_script_1_2.js"></script>
+
+    <div id="fb-root"></div>
+  </body>
+</html>

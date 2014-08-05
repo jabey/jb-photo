@@ -1,0 +1,27 @@
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Galleries</h3>
+      </div>
+    </div>
+    <div class="row">
+<!--        <ul class="thumbnails"><!-- ng-show="galleryOverviewLoaded==true">-->
+<!--          <li ng-repeat="galleryItem in galleryLinkData" class="col-md-3 text-center">-->
+        <div ng-repeat="galleryItem in galleryLinkData" class="col-md-3 text-center">
+          <a ng-href="/gallery/{{$index+1}}" class="thumbnail">
+            <img ng-src="{{galleryItem.thumbUrl}}" alt="{{galleryItem.desc}}" >
+            <div class="caption">
+              <h4>{{galleryItem.desc}}</h4>
+              <p>{{galleryItem.imgCount}} Images</p>
+            </div>
+          </a>
+        </div>
+<!--          </li>-->
+<!--        </ul>-->
+        <div class="progress progress-striped active progress-position" ng-show="galleryLoaded==false">
+          <span class="badge">{{galleryOverviewProgress}}</span>
+          <div class="bar" ng-style="{width: galleryOverviewProgress}">Loading...</div>
+        </div>
+<!--      </div>-->
+    </div>
+

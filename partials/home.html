@@ -1,0 +1,90 @@
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="myCarousel" class="carousel slide" ng-show="carouselLoaded==true">
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="{{$index}}"  ng-repeat="photo in carouselPhotos.feed.entry" ng-class="{'active': $index==0}"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div ng-repeat="photo in carouselPhotos.feed.entry" ng-class="{'item': true, 'active': $index==0}">
+              <img class="carousel-image" ng-src="{{photo.media$group.media$content[0].url}}" alt="{{photo.media$group.media$description.$t}}" >
+              <div class="carousel-caption" ng-hide="photo.jb$galleryId==undefined">
+                <a class="carousel-gallery-link pull-right" ng-href="/gallery/{{photo.jb$galleryId.$t}}">{{$parent.galleryLinkData[photo.jb$galleryIdx].desc}} <i class="fa fa-arrow-circle-o-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <!--
+          <a class="left carousel-control" href="/#myCarousel" data-slide="prev">&lsaquo;</a>
+          <a class="right carousel-control" href="/#myCarousel" data-slide="next">&rsaquo;</a>
+          -->
+        </div>
+        <div id="carouselHolder" ng-show="carouselLoaded==false">
+          <div class="span12 progress progress-striped active progress-position">
+            <span class="badge">{{carouselProgress}}</span>
+            <div class="bar" ng-style="{width: carouselProgress}">Loading...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+<!--
+    <div class="row">
+      <div class="col-md-12">
+          <h2 class="ps-title">jonathanball.co.uk
+            <span class="pull-right">
+              <a href="mailto:info@jonathanball.co.uk" alt="Email Link" target="_blank"><span class="fa fa-envelope"></span></a>
+              <a href="http://twitter.com/jabey" alt="Twitter Profile" target="_blank"><span class="fa fa-twitter-square"></span></a>
+              <a href="http://plus.google.com/u/0/106834531134885596306" alt="Google Plus Profile" target="_blank"><span class="fa fa-google-plus-square"></span></a>
+              <a href="#" alt="Flickr Profile" target="_blank"><span class="fa fa-flickr"></span></a>
+              <a href="#" alt="Pinterest Profile" target="_blank"><span class="fa fa-pinterest-square"></span></a>
+              <a href="#" alt="Tumblr" target="_blank"><span class="fa fa-tumblr-square"></span></a>
+              <a href="#" alt="Facebook" target="_blank"><span class="fa fa-facebook-square"></span></a>
+            </span>
+          </h2>
+      </div>
+    </div>
+-->
+
+
+    <!--
+    <div class="row">
+      <div class="span12">
+        <div class="hero-unit">
+          <h2>Welcome to Jonathan Ball Photography</h1>
+          <p>Thank you for visiting my website and I hope you will enjoy looking around.</p>
+          <p>A selection of some of my favourite photographs are shown on the <a href="/portfolio">Portfolio</a> page. If you would prefer to look at subject areas in more depth please take a look at the <a href="/galleries">Galleries</a> section</p>.
+        </div>
+      </div>
+    </div>
+    -->
+    <div class="row">
+        <div class="col-md-4">
+          <h2>Welcome</h2>
+          <p>Thank you for visiting my website and I hope you will enjoy looking around.</p>
+          <p>A selection of some of my favourite photographs are shown on the <a href="/portfolio">Portfolio</a> page. If you would prefer to look at subject areas in more depth please take a look at the <a href="/galleries">Galleries</a> section</p>.
+          <!--
+          <p>Donec at ipsum nisi. Ut ultrices vestibulum sem. Duis pretium purus nec enim adipiscing eleifend. Morbi convallis, dui vel pharetra posuere, mauris orci vehicula libero, sed dictum elit purus id felis. Morbi sit amet orci vulputate metus egestas gravida. Sed faucibus lectus in justo vulputate hendrerit eu ut ipsum. Maecenas nec leo urna, ut auctor ante. Aenean iaculis hendrerit lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in nisi justo. Morbi libero massa, suscipit venenatis semper vitae, vestibulum et lacus.</p>
+          -->
+        </div>
+        <div class="col-md-4">
+          <h2>Prints for sale</h2>
+          <a href="http://www.redbubble.com/people/jabey?utm_source=RB&utm_medium=banner&utm_campaign=horizontal_work_thumbnails"title="View my work."><img src="http://www.redbubble.com/people/jabey/recipe:banner/jabey_banner.jpg" alt="Buy my work"/></a>
+          <p>Prints of a number of my photographs are now available! Please click on the images above to go to my RedBubble store. More prints are being added weekly so if you don't see what you're after please check back in a few weeks. Alternatively if you see a photograph that isn't currently listed as being available as a print then please get in touch using the contact page and I will get a print produced as a special case.
+        </div>
+        <div class="col-md-4">
+          <h2>Licensing</h2>
+          <p>Most of these images are available for licensing. If you are interested in publishing one or more of them please get in touch.</p>
+        </div>
+      </div>
+
+
+  <script>
+			
+    !function ($) {
+      $(function(){
+        $('#myCarousel').carousel()
+      })
+    }(window.jQuery)
+		
+  </script>

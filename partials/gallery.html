@@ -1,0 +1,37 @@
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="well">
+        <h3>{{galleryDesc}}</h3>
+        <p>{{gallery.feed.gphoto$numphotos.$t}} images</p>
+      </div>
+      </div>
+      <div class="col-md-9">
+        <p>{{gallery.feed.subtitle.$t}}</p>
+      </div>
+    </div>
+<!--    
+    <div class="row">
+      <div class="col-md-12">
+        <hr class="featurette-divider">
+      </div>
+    </div>
+-->
+    <div class="row">
+<!--      <div class="col-md-12">-->
+<!--        <ul class="thumbnails" ng-show="galleryLoaded==true">-->
+<!--          <li ng-repeat="pic in gallery.feed.entry" class="col-md-3">-->
+          <div ng-repeat="pic in gallery.feed.entry" class="col-md-3" ng-show="galleryLoaded==true">
+            <a ng-href="/gallery/{{galleryIdx}}/photo/{{$index+1}}" class="thumbnail">
+              <img ng-src="{{pic.media$group.media$thumbnail[0].url}}" alt="{{pic.media$group.media$description.$t}}" >
+            </a>
+          </div>
+<!--          </li>-->
+<!--        </ul>-->
+        <div class="progress progress-striped active progress-position" ng-show="galleryLoaded==false">
+          <span class="badge">{{galleryProgress}}</span>
+          <div class="progress-bar" role="progressbar" ng-style="{width: galleryProgress}">Loading...</div>
+        </div>
+<!--      </div>-->
+    </div>
+
