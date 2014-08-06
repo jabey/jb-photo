@@ -24,7 +24,7 @@
       echo '<meta itemprop="image" content="'.$imageUrl.'">';
       echo '<meta property="og:title" content="Jonathan Ball Photography" />';
       echo '<meta property="og:type" content="website" />';
-      echo '<meta property="og:url" content="http://www.jonathanball.photography/photo_simple.php?id='.$jbid.'" />';
+      echo '<meta property="og:url" content="http://www.jonathanball.photography/photo_simple?id='.$jbid.'" />';
       echo '<meta property="og:image" content="'.$imageUrl.'" />';
     ?>
   </head>
@@ -32,7 +32,9 @@
       <?php
         echo '<img src="'.$imageUrl.'">';
         echo '<p>'.$imageDesc.'</p>';
-        echo '<p>'.$agent.'</p>';
+        echo '<p>'.$_SERVER['HTTP_USER_AGENT'].'</p>';
+        echo '<p>'.$_SERVER['QUERY_STRING'].'</p>';
+        echo '<p>'.$_SERVER['REQUEST_URI'].'</p>';
       ?>
   </body>
 </html>
