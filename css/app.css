@@ -201,6 +201,14 @@ a.thumbnail {
     opacity: 0.75;
 }
 
+.jb-gallery-thumb a {
+  overflow-y:hidden;
+}
+
+.jb-gallery-thumb img {
+  margin-bottom:-13px;
+}
+
 #carouselHolder {
   max-width: 1500px;
   margin: auto;

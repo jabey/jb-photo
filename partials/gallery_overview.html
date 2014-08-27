@@ -7,7 +7,7 @@
     <div class="row">
 <!--        <ul class="thumbnails"><!-- ng-show="galleryOverviewLoaded==true">-->
 <!--          <li ng-repeat="galleryItem in galleryLinkData" class="col-md-3 text-center">-->
-        <div ng-repeat="galleryItem in galleryLinkData" class="col-md-3 text-center">
+        <div ng-repeat="galleryItem in galleryLinkData" class="col-md-3 text-center jb-gallery-thumb">
           <a ng-href="/gallery/{{$index+1}}" class="thumbnail">
             <img ng-src="{{galleryItem.thumbUrl}}" alt="{{galleryItem.desc}}" >
             <div class="caption">
@@ -24,4 +24,3 @@
         </div>
 <!--      </div>-->
     </div>
-
