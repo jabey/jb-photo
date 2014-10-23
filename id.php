@@ -23,9 +23,12 @@
       echo '<meta itemprop="description" content="'.$imageDesc.'">';
       echo '<meta itemprop="image" content="'.$imageUrl.'">';
       echo '<meta property="og:title" content="Jonathan Ball Photography" />';
-      echo '<meta property="og:type" content="website" />';
-      echo '<meta property="og:url" content="http://www.jonathanball.photography/photo_simple?id='.$jbid.'" />';
+      echo '<meta property="og:site_name" content="Jonathan Ball Photography" />';
+      echo '<meta property="og:url" content="http://www.jonathanball.photography/id/'.$jbid.'" />';
+      echo '<meta property="og:description" content="'.$imageDesc.'">';
       echo '<meta property="og:image" content="'.$imageUrl.'" />';
+      echo '<meta property="og:type" content="website" />';
+      echo '<meta property="fb:app_id" content="1428296944098387" />';
     ?>
   </head>
   <body>

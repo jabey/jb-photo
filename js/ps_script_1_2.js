@@ -593,7 +593,7 @@ angular.module('photoSiteApp', ['ngRoute'])
       $scope.metadataLoaded = true;
 //      setupSocialWidgets($rootScope);
 
-      var shareData = setupShareData($routeParams.permaId, "//jonathanball.photography/id/" + $routeParams.permaId, $scope.mainImage.src, $scope.photoData.feed.media$group.media$description.$t);
+      var shareData = setupShareData($routeParams.permaId, "//www.jonathanball.photography/id/" + $routeParams.permaId, $scope.mainImage.src, $scope.photoData.feed.media$group.media$description.$t);
       $scope.pinterestButton = { url: shareData.pinitUrl };
       $scope.tumblrButton = {url: shareData.tumblrUrl};
       $scope.twitterButton = {url: shareData.twitterUrl};

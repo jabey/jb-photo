@@ -3,13 +3,19 @@
 
 # RewriteCond %{HTTP_USER_AGENT}
 
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME}\.php -f
-  RewriteRule ^(.*)$ $1.php
+#  RewriteCond %{HTTP_USER_AGENT}  ^facebookexternalhit
+#  RewriteCond %{REQUEST_FILENAME} !-d
+#  RewriteCond %{REQUEST_FILENAME}\.php -f
+#  RewriteRule ^(.*)$ $1.php [L]
 
-  RewriteCond %{HTTP_USER_AGENT}  !^facebookexternalhit
-  RewriteCond %{REQUEST_URI} ^/photo_simple
-  RewriteRule id=(.*)$ id/$1
+#   RewriteCond %{HTTP_USER_AGENT}  !^facebookexternalhit
+#   RewriteCond %{REQUEST_URI} ^/photo_simple
+#   RewriteCond %{QUERY_STRING} ^id=(.*)$
+#   RewriteRule ^(.*)$ id/%1?
+
+  RewriteCond %{HTTP_USER_AGENT}  (^facebookexternalhit|google\.com/\+/web/snippet/\)$|google\.com/webmasters/tools/richsnippets\)$)
+  RewriteCond %{REQUEST_URI} ^/id/(.*)
+  RewriteRule ^(.*)$ id.php?id=%1?
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
