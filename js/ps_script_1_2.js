@@ -340,6 +340,17 @@ angular.module('photoSiteApp', ['ngRoute'])
     };
   })
 
+  .directive('jbpCanvasTitle', function() {
+
+    return {
+      restrict: 'C',
+      link: function(scope, element, attrs) {
+        element.on("hide.bs.collapse", function() {element.find(".fa-caret-down").removeClass("fa-rotate-180");}) //TODO: Improve specicifity
+        element.on("show.bs.collapse", function() {element.find(".fa-caret-down").addClass("fa-rotate-180");})
+      }
+    }
+  })
+
   .controller( 'MainCtrl', ['$scope', '$route', '$routeParams', '$location', '$http', 'picasaApi', 'galleryList', function MainCtrl($scope, $route, $routeParams, $location, $http, picasaApi, galleryList ) {
     $scope.galleryListLoaded = false;
     $scope.activeMenuItem="home";
